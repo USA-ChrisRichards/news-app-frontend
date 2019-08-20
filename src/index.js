@@ -5,5 +5,4 @@
 // rating click feature
 
 // global variables
-const url = ""
-const 
+const apiUrl = ""
