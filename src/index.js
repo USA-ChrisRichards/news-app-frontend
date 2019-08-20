@@ -18,11 +18,11 @@ function postComment() {
         method: "POST",
         headers: {"Content-Type": "application/json",  
         "Accept": "application/json"},
-        body: {content: event.target.value, article_id: event.target.id, user_id: 1}
+        body: JSON.stringify({'content': event.target.querySelector('input').value, 'user_id': 1, 'article_id': event.target.id})
           }
-   fetch(commentsURL, configurationObject)
-   .then(resp =>resp.json())
-   .then(el => getComments(el))
+        
+   fetch("http://localhost:3000/comments", configurationObject)
+   
 
 }
 
