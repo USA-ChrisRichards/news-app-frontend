@@ -5,4 +5,13 @@
 // rating click feature
 
 // global variables
-const apiUrl = ""
+const apiUrl = "http://localhost:3000/articles"
+
+//fetch GET
+fetch(apiUrl)
+  .then(resp => resp.json())
+  .then(articles => console.log(articles));
+
+// function display(data) {
+
+// }
