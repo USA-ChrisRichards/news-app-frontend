@@ -7,16 +7,23 @@
     <script type="text/javascript" src="src/index.js" defer></script>
   </head>
   <body>
-    <div id="filter-div">
-      <button id="article-filter">Filter</button>
-    </div>
-    <div id="article-bar">
+    <div id="article-container">
 
     </div>
-    <div id="news-article-container">
-      <h1>News:</h1>
-      <div id="dog-info">
 
+    <div id="comments-container">
+            <form id="comment-post-form">
+                <p>Create Comment:</p>
+                <input id="content-input" type="text" placeholder="Add Comment"></input>
+                <input id="submit" class="comment-box" type="submit">
+            </form>
+      <h3>Comments:</h3>
+      <div id="comment-content">
+       
+        <ul id="comments-list">
+            <!-- <li>Newly created comments here</li> -->
+        </ul>
+        <!-- form -->
       </div>
     </div>
   </body>
