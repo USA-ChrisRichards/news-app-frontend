@@ -2,3 +2,9 @@ body {
     display: grid;
     grid-template-columns: 8fr 8fr
 }
+
+img {
+    display: block;
+    width: 200px;
+    height: auto;
+}
