@@ -1,9 +1,14 @@
 // global variables
 const apiUrl = "http://localhost:3000/articles"
 const commentsUrl = "http://localhost:3000/comments"
+
 let container = document.getElementById('article-container')
+
 container.addEventListener("submit", postComment)
 container.addEventListener('click', () => deleteComment())
+container.addEventListener('click', () => likeUnlike())
+
+
 function getComments(theArticle) {
     
     return theArticle.comments.map(getComment).join(' ')
@@ -45,6 +50,8 @@ fetch(apiUrl)
 
 
 function renderAllArticles(articleArray) {
+    
+
     return articleArray.map(renderSingleArticle).join('')
   }
   
@@ -55,6 +62,9 @@ function renderAllArticles(articleArray) {
             <a href=${article.link}>${article.title}</a>
         <div class="article-image">
             <img src=${article.url}>
+        </div>
+        <div id="likeBtn" data-id=${getRating(article)}>
+        <button data-id="${article.id}" type="button" >Like</button>
         </div>
     </div>
         <div id="comments-container">
@@ -72,6 +82,14 @@ function renderAllArticles(articleArray) {
     `)
   }
 
+  function getRating(item) {
+      if (item.ratings[0] !== undefined) {
+      return  item.ratings[0].id
+  } else {
+      return 0
+     }
+
+  }
 
   function deleteComment () {
       let ev = event
@@ -82,5 +100,33 @@ function renderAllArticles(articleArray) {
        .then(resp => ev.target.remove())
     } 
   }
+
+
+  function likeUnlike() {
+      if (event.target.parentNode.id == "likeBtn")
+      console.log(event.target.parentNode.dataset.id)
+  }
+
+    
+
+
+    //    if (item.ratings[0] !== null) {
+        //    console.log(item.ratings[0])
+    //        fetch("http://localhost:3000/ratings", {
+    //            method: "POST",
+    //            headers: {"Content-Type": "application/json",  
+    //            "Accept": "application/json"},
+    //            body: JSON.stringify({'user_id': 1, 'article_id': item.id}) 
+    //        })
+    //        .then(resp => resp.json())
+    //    } else {
+    //        console.log(item.ratings[0])
+        //    fetch(`http://localhost:3000/ratings/${item.ratings[0].id}`, {
+        //        method: "DELETE"
+        //    })
+           
+    //    }
+  
+
 
 

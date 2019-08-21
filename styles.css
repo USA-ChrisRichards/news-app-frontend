@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 8fr 8fr;
     justify-content: space-evenly;
-    background-color: silver;
+    background-color: rgb(241, 239, 239);
     margin: 30px;
 }
 
@@ -19,7 +19,3 @@ img {
     
 }
 
-/* ul {
-    grid-column: 1/span 2;
-  
-} */
