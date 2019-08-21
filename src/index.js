@@ -56,6 +56,7 @@ function renderAllArticles(articleArray) {
         <div class="article-image">
             <img src=${article.url}>
         </div>
+    </div>
         <div id="comments-container">
                 <form id=${article.id}>
                     <p>Create Comment:</p>
@@ -67,7 +68,6 @@ function renderAllArticles(articleArray) {
                     ${getComments(article)} 
                 </ul>
         </div>
-    </div>
 </div>
     `)
   }

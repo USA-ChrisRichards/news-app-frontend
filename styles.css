@@ -1,15 +1,25 @@
-body {
+.article-card {
     display: grid;
-    grid-template-columns: 8fr 8fr
+    grid-template-columns: 8fr 8fr;
+    justify-content: space-evenly;
+    background-color: silver;
+    margin: 30px;
+}
+
+#comments-container {
+    grid-column: 2/2;
+    margin: 30px
 }
 
 img {
-    display: block;
-    width: 200px;
+    
+    width: 400px;
     height: auto;
+    margin: 30px;
+    
 }
 
-ul {
-    grid-column-start: 1;
-  grid-column-end: 3;
-}
+/* ul {
+    grid-column: 1/span 2;
+  
+} */
