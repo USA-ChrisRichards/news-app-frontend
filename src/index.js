@@ -1,9 +1,24 @@
 // global variables
 const apiUrl = "http://localhost:3000/articles"
 const commentsUrl = "http://localhost:3000/comments"
+
 let container = document.getElementById('article-container')
 container.addEventListener("submit", postComment)
-container.addEventListener('click', () => deleteComment())
+// container.addEventListener('click', () => deleteComment())
+container.addEventListener('click', () => {
+    if (event.target.parentNode.id == "comments-list") {
+        let li = document.getElementById(event.target.id)
+        let deleteButton = document.createElement("button")
+        deleteButton.innerText = "Delete Comment"
+        if (li.firstElementChild.innerText !== "Delete Comment") {
+            console.log(li)
+            li.append(deleteButton)
+            deleteButton.addEventListener('click', () => deleteComment())
+        }
+    }
+})
+
+
 function getComments(theArticle) {
     
     return theArticle.comments.map(getComment).join(' ')
@@ -31,7 +46,6 @@ function postComment() {
        let newComment = getComment(el)
        ul.innerHTML += newComment
    })
-   
 
 }
 
@@ -84,3 +98,17 @@ function renderAllArticles(articleArray) {
   }
 
 
+
+
+// function updateLikes() {
+//     articles.forEach(article, () => {
+//         for(const rating in article) {
+//             if (rating.like == true) {
+//                 //make html show 'real'
+//             }
+//             else if (rating.like == false) {
+//                 //make html show 'fake'
+//             }
+//         }
+//     })
+// }
