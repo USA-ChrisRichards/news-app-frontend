@@ -8,3 +8,8 @@ img {
     width: 200px;
     height: auto;
 }
+
+ul {
+    grid-column-start: 1;
+  grid-column-end: 3;
+}
