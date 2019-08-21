@@ -10,14 +10,22 @@ container.addEventListener('click', () => {
         let li = document.getElementById(event.target.id)
         let deleteButton = document.createElement("button")
         deleteButton.innerText = "Delete Comment"
-        if (li.firstElementChild.innerText !== "Delete Comment") {
+        if (li.innerHTML.includes("button") == false) {
             console.log(li)
             li.append(deleteButton)
-            deleteButton.addEventListener('click', () => deleteComment())
+            let e = event.target
+            deleteButton.addEventListener('click', () => commentDelete(e))
+        }
+        else {
+            li.innerHTML = event.target.innerHTML.replace("<button>Delete Comment</button>", "")
         }
     }
 })
-
+const commentDelete = (eventTarget) => {
+    fetch(`http://localhost:3000/comments/${eventTarget.id}`, {
+           method: "DELETE"
+       }).then(resp => eventTarget.remove())
+}
 
 function getComments(theArticle) {
     
@@ -45,6 +53,8 @@ function postComment() {
        let ul = ev.target.parentNode.querySelector('ul')
        let newComment = getComment(el)
        ul.innerHTML += newComment
+       let input = document.getElementById("content-input")
+       input.value = ""
    })
 
 }
