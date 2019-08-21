@@ -11,7 +11,6 @@ container.addEventListener('click', () => {
         let deleteButton = document.createElement("button")
         deleteButton.innerText = "Delete Comment"
         if (li.innerHTML.includes("button") == false) {
-            console.log(li)
             li.append(deleteButton)
             let e = event.target
             deleteButton.addEventListener('click', () => commentDelete(e))
@@ -34,7 +33,7 @@ function getComments(theArticle) {
 }
 
 function getComment(com){
-    return `<li id = "${com.id}"> ${com.content}</li>`
+    return `<li class="comment" id = "${com.id}"> ${com.content}</li>`
 }
 
 function postComment() {
@@ -53,8 +52,10 @@ function postComment() {
        let ul = ev.target.parentNode.querySelector('ul')
        let newComment = getComment(el)
        ul.innerHTML += newComment
-       let input = document.getElementById("content-input")
-       input.value = ""
+       
+       let input = ev.target.querySelector("input")
+       input.value = "";
+
    })
 
 }
@@ -84,7 +85,7 @@ function renderAllArticles(articleArray) {
         <div id="comments-container">
                 <form id=${article.id}>
                     <p>Create Comment:</p>
-                    <input id="content-input" type="text" placeholder="Add Comment"></input>
+                    <input id="content-input" class="input" type="text" placeholder="Add Comment"></input>
                     <input id="submit" class="comment-box" type="submit">
                 </form>
                 <h3>Comments:</h3>
