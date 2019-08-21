@@ -1,15 +1,44 @@
 .article-card {
+    grid-column-gap: 0 10%;
     display: grid;
-    grid-template-columns: 8fr 8fr;
+    grid-template-columns: 1fr 1fr;
     justify-content: space-evenly;
-    background-color: rgb(241, 239, 239);
-    margin: 30px;
+    background-color: rgb(231, 231, 231);
+    margin: 15px;
+    /* text-align: center; */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: auto;
 }
 
 #comments-container {
     grid-column: 2/2;
-    margin: 30px
+    grid-row: 1/2;
+    margin: 30px;
+    height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+#comments-list {
+    grid-row: 2/2;
+    margin: 30px;
+    height: auto;
+    width: 200px;
+}
+
+.comment {
+    width: 300px;
+    height: auto;
+    padding: 15px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    margin: 2px
+    }
+
+    
 
 img {
     
@@ -19,3 +48,15 @@ img {
     
 }
 
+.website-title {
+    text-align: center;
+    font-size: 18pt;
+    color: rgb(131, 8, 8);
+    border: 5px groove #1a1a1a;
+    /* font: georgia; */
+    position: auto;
+}
+
+button {
+    margin: 5px;
+}

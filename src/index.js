@@ -5,7 +5,28 @@ const commentsUrl = "http://localhost:3000/comments"
 let container = document.getElementById('article-container')
 
 container.addEventListener("submit", postComment)
-container.addEventListener('click', () => deleteComment())
+// container.addEventListener('click', () => deleteComment())
+container.addEventListener('click', () => {
+    if (event.target.parentNode.id == "comments-list") {
+        let li = document.getElementById(event.target.id)
+        let deleteButton = document.createElement("button")
+        deleteButton.innerText = "Delete Comment"
+        if (li.innerHTML.includes("button") == false) {
+            li.append(deleteButton)
+            let e = event.target
+            deleteButton.addEventListener('click', () => commentDelete(e))
+        }
+        else {
+            li.innerHTML = event.target.innerHTML.replace("<button>Delete Comment</button>", "")
+        }
+    }
+})
+const commentDelete = (eventTarget) => {
+    fetch(`http://localhost:3000/comments/${eventTarget.id}`, {
+           method: "DELETE"
+       }).then(resp => eventTarget.remove())
+}
+// container.addEventListener('click', () => deleteComment())
 container.addEventListener('click', () => likeUnlike())
 
 
@@ -16,7 +37,7 @@ function getComments(theArticle) {
 }
 
 function getComment(com){
-    return `<li id = "${com.id}"> ${com.content}</li>`
+    return `<li class="comment" id = "${com.id}"> ${com.content}</li>`
 }
 
 function postComment() {
@@ -35,8 +56,11 @@ function postComment() {
        let ul = ev.target.parentNode.querySelector('ul')
        let newComment = getComment(el)
        ul.innerHTML += newComment
+       
+       let input = ev.target.querySelector("input")
+       input.value = "";
+
    })
-   
 
 }
 
@@ -70,7 +94,7 @@ function renderAllArticles(articleArray) {
         <div id="comments-container">
                 <form id=${article.id}>
                     <p>Create Comment:</p>
-                    <input id="content-input" type="text" placeholder="Add Comment"></input>
+                    <input id="content-input" class="input" type="text" placeholder="Add Comment"></input>
                     <input id="submit" class="comment-box" type="submit">
                 </form>
                 <h3>Comments:</h3>
@@ -102,6 +126,20 @@ function renderAllArticles(articleArray) {
   }
 
 
+
+
+// function updateLikes() {
+//     articles.forEach(article, () => {
+//         for(const rating in article) {
+//             if (rating.like == true) {
+//                 //make html show 'real'
+//             }
+//             else if (rating.like == false) {
+//                 //make html show 'fake'
+//             }
+//         }
+//     })
+// }
   function likeUnlike() {
       if (event.target.parentNode.id == "likeBtn")
       console.log(event.target.parentNode.dataset.id)
