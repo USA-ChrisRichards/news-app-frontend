@@ -121,7 +121,7 @@ function renderAllArticles(articleArray) {
 
         return "Not Fake"
     } else {
-        return "Fake"
+        return "Report Fake"
     }
 }
 
@@ -173,7 +173,7 @@ function toggleImgClass(item) {
 
 
        function removeFake(item) {
-           item.innerText = "Fake"
+           item.innerText = "Report Fake"
            item.parentNode.parentNode.querySelector('img').className = "articlenotfake"
            fetch(`http://localhost:3000/ratings/${item.parentNode.dataset.id}`, {
                method: "DELETE"
