@@ -1,41 +1,58 @@
+body {
+background-color: rgba(194, 188, 176, 0.315);
+}
+
+a {
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    color: black;
+    text-align: left;
+    
+
+}
+
 .article-card {
-    grid-column-gap: 0 10%;
+    grid-column-gap: 1%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 5fr 5fr;
     justify-content: space-evenly;
-    background-color: rgb(231, 231, 231);
-    margin: 15px;
+    
+    margin: 30px;
     /* text-align: center; */
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: auto;
+    padding: 60px;
+    background-color: rgba(255, 255, 253, 0.726);;
+    border: 1px solid hsla(0, 0%, 50.2%, .2);
+    border-radius: 5px;
+    box-shadow: 0 11px 20px 0 rgba(0, 0, 0, .1);
+}
+
+.article-frame {
+    align-content: left;
+    width: 420px;
+    
 }
 
 #comments-container {
     grid-column: 2/2;
     grid-row: 1/2;
-    margin: 30px;
-    height: 200px;
+    
+    height: 500px;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
-#comments-list {
-    grid-row: 2/2;
-    margin: 30px;
-    height: auto;
-    width: 200px;
-}
+
 
 .comment {
-    width: 300px;
+    font-family: Lato, sans-serif;
+	box-shadow: 4px 4px rgb(44, 44, 43);
+    width: auto;
     height: auto;
     padding: 15px;
-    background-color: #d9d9d9;
-    border-radius: 5px;
-    margin: 2px
+    background-color:rgb(243, 238, 223);
+    border-radius: 50px;
+    margin: 5px
     }
 
     
@@ -43,8 +60,10 @@
 img {
     
     width: 400px;
-    height: auto;
-    margin: 30px;
+    height: 300px;
+    object-fit: cover;
+    margin: 20px 10px 20px 0px;
+    box-shadow: 5px 5px 5px 5px #7c7a7a;
     
 }
 
@@ -52,11 +71,38 @@ img {
     text-align: center;
     font-size: 18pt;
     color: rgb(131, 8, 8);
-    border: 5px groove #1a1a1a;
+    border: 5px groove #ccbbbb;
     /* font: georgia; */
-    position: auto;
+    position: center;
+    margin: 50px;
+    
 }
 
-button {
-    margin: 5px;
+button, #submit {
+  background: #ccbbbb;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1;
+  outline: 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px rgb(110, 110, 87);
 }
+
+.input::placeholder {
+    color: #a2b6d1;
+    font-style: italic;
+  }
+
+  .input {
+    
+    border-radius: 10px;
+    font-weight: 700;
+    min-width: 350px;
+    padding: 2px 5px;
+    height: 30px;
+    width: auto;
+  }

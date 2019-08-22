@@ -9,6 +9,7 @@ container.addEventListener("submit", postComment)
 container.addEventListener('click', () => {
     if (event.target.parentNode.id == "comments-list") {
         let li = document.getElementById(event.target.id)
+        li.style.backgroundColor = "#874f10"
         let deleteButton = document.createElement("button")
         deleteButton.innerText = "Delete Comment"
         if (li.innerHTML.includes("button") == false) {
@@ -18,6 +19,7 @@ container.addEventListener('click', () => {
         }
         else {
             li.innerHTML = event.target.innerHTML.replace("<button>Delete Comment</button>", "")
+            li.style.backgroundColor = "rgb(243, 238, 223)"
         }
     }
 })
