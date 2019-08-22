@@ -28,8 +28,8 @@ const commentDelete = (eventTarget) => {
            method: "DELETE"
        }).then(resp => eventTarget.remove())
 }
-// container.addEventListener('click', () => deleteComment())
-container.addEventListener('click', () => likeUnlike())
+
+
 
 
 function getComments(theArticle) {
@@ -66,7 +66,7 @@ function postComment() {
 
 }
 
-//fetch GET
+
 fetch(apiUrl)
   .then(resp => resp.json())
   .then(articles => {
@@ -76,8 +76,6 @@ fetch(apiUrl)
 
 
 function renderAllArticles(articleArray) {
-    
-
     return articleArray.map(renderSingleArticle).join('')
   }
   
@@ -87,10 +85,10 @@ function renderAllArticles(articleArray) {
     <div class="article-frame">
             <a href=${article.link}>${article.title}</a>
         <div class="article-image">
-            <img src=${article.url}>
+            <img class="${toggleImgClass(article)}" src=${article.url}>
         </div>
-        <div id="likeBtn" data-id=${getRating(article)}>
-        <button data-id="${article.id}" type="button" >Like</button>
+        <div id="likeBtn" data-id="${getRating(article)}">
+            <button data-id="${article.id}" type="button" >${toggleFake(article)}</button>
         </div>
     </div>
         <div id="comments-container">
@@ -117,55 +115,72 @@ function renderAllArticles(articleArray) {
 
   }
 
-  function deleteComment () {
-      let ev = event
-       if (ev.target.parentNode.id == "comments-list"){
-       fetch(`http://localhost:3000/comments/${event.target.id}`, {
-           method: "DELETE"
-       })
-       .then(resp => ev.target.remove())
-    } 
-  }
+  function toggleFake(item){
+    if (item.ratings[0] !== undefined){
+
+        return "Not Fake"
+    } else {
+        return "Fake"
+    }
+}
+
+function toggleImgClass(item) {
+    if (item.ratings[0] !== undefined){
+        return "articlefake"
+    } else {
+        return "articlenotfake"
+    }
+}
 
 
 
+  container.addEventListener('click', () => fakeUnfake())
 
-// function updateLikes() {
-//     articles.forEach(article, () => {
-//         for(const rating in article) {
-//             if (rating.like == true) {
-//                 //make html show 'real'
-//             }
-//             else if (rating.like == false) {
-//                 //make html show 'fake'
-//             }
-//         }
-//     })
-// }
-  function likeUnlike() {
-      if (event.target.parentNode.id == "likeBtn")
-      console.log(event.target.parentNode.dataset.id)
+  function fakeUnfake() {
+      let ev = event.target
+        if (ev.parentNode.id == "likeBtn"){ 
+            if(ev.parentNode.dataset.id != 0) {
+                removeFake(ev)
+            } else {
+                addFake(ev)
+            }
+            
+        }
   }
 
     
 
 
-    //    if (item.ratings[0] !== null) {
-        //    console.log(item.ratings[0])
-    //        fetch("http://localhost:3000/ratings", {
-    //            method: "POST",
-    //            headers: {"Content-Type": "application/json",  
-    //            "Accept": "application/json"},
-    //            body: JSON.stringify({'user_id': 1, 'article_id': item.id}) 
-    //        })
-    //        .then(resp => resp.json())
-    //    } else {
-    //        console.log(item.ratings[0])
-        //    fetch(`http://localhost:3000/ratings/${item.ratings[0].id}`, {
-        //        method: "DELETE"
-        //    })
+       function addFake(item) {
+           item.innerText = "Not Fake"
+           item.parentNode.parentNode.querySelector('img').className = "articlefake"
+           fetch("http://localhost:3000/ratings", {
+               method: "POST",
+               headers: {"Content-Type": "application/json",  
+               "Accept": "application/json"},
+               body: JSON.stringify({'user_id': 1, 'article_id': item.dataset.id}) 
+           })
+           .then(resp => resp.json())
+           .then(el => {
+               item.parentNode.dataset.id = el.id
+              
+            })
+       } 
+
+
+
+       function removeFake(item) {
+           item.innerText = "Fake"
+           item.parentNode.parentNode.querySelector('img').className = "articlenotfake"
+           fetch(`http://localhost:3000/ratings/${item.parentNode.dataset.id}`, {
+               method: "DELETE"
+           })
+           .then(resp => {
+               item.parentNode.dataset.id = 0
+               
+            })
            
-    //    }
+       }
   
 
 
