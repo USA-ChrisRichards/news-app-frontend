@@ -89,6 +89,7 @@ function renderAllArticles(articleArray) {
         </div>
         <div id="likeBtn" data-id="${getRating(article)}">
             <button data-id="${article.id}" type="button" >${toggleFake(article)}</button>
+            <audio src="/Users/ipadurean79/Desktop/coding/news-app-frontend/donald-trump-fake-news-sound-effect.mp3" type="audio/mpeg"></audio>
         </div>
     </div>
         <div id="comments-container">
@@ -152,6 +153,8 @@ function toggleImgClass(item) {
 
 
        function addFake(item) {
+           let sound = item.parentNode.querySelector('audio')
+           sound.play()
            item.innerText = "Not Fake"
            item.parentNode.parentNode.querySelector('img').className = "articlefake"
            fetch("http://localhost:3000/ratings", {
