@@ -8,7 +8,6 @@ a {
     color: black;
     text-align: left;
     
-
 }
 
 .article-card {
@@ -48,13 +47,14 @@ a {
 
 .comment {
     font-family: Lato, sans-serif;
-	box-shadow: 4px 4px rgb(44, 44, 43);
+	box-shadow: 4px 4px rgba(76, 79, 80, 0.37);
     width: auto;
     height: auto;
     padding: 15px;
     background-color:rgb(243, 238, 223);
-    border-radius: 50px;
+    border-radius: 10px;
     margin: 5px
+
     }
 
     
@@ -69,6 +69,10 @@ img {
     
 }
 
+h1 {
+    text-shadow: 2px 2px #c7a1a1;
+  }
+
 .articlefake {
     -webkit-filter: blur(5px);
 }
@@ -81,6 +85,7 @@ img {
     /* font: georgia; */
     position: center;
     margin: 50px;
+    box-shadow: 4px 4px rgb(44, 44, 43);
     
 }
 
@@ -101,14 +106,16 @@ button, #submit {
 .input::placeholder {
     color: #a2b6d1;
     font-style: italic;
+    font-size: 15px;
   }
 
   .input {
     
     border-radius: 10px;
-    font-weight: 700;
-    min-width: 350px;
+    border-color: azure;
+    width: 400px;
+    height: 100px;
     padding: 2px 5px;
-    height: 30px;
-    width: auto;
+    
+    
   }

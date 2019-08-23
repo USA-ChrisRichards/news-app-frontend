@@ -49,7 +49,7 @@ function postComment() {
         method: "POST",
         headers: {"Content-Type": "application/json",  
         "Accept": "application/json"},
-        body: JSON.stringify({'content': event.target.querySelector('input').value, 'user_id': 1, 'article_id': event.target.id})
+        body: JSON.stringify({'content': event.target.querySelector('textarea').value, 'user_id': 1, 'article_id': event.target.id})
           }
         
    fetch("http://localhost:3000/comments", configurationObject)
@@ -59,7 +59,7 @@ function postComment() {
        let newComment = getComment(el)
        ul.innerHTML += newComment
        
-       let input = ev.target.querySelector("input")
+       let input = ev.target.querySelector("textarea")
        input.value = "";
 
    })
@@ -95,7 +95,7 @@ function renderAllArticles(articleArray) {
         <div id="comments-container">
                 <form id=${article.id}>
                     <p>Create Comment:</p>
-                    <input id="content-input" class="input" type="text" placeholder="Add Comment"></input>
+                    <textarea id="content-input" class="input" type="text" placeholder="Add Comment"></textarea>
                     <input id="submit" class="comment-box" type="submit">
                 </form>
                 <h3>Comments:</h3>
